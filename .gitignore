@@ -1,8 +1,11 @@
 venv/
 pw-browsers/
+node_modules/
 __pycache__/
 *.pyc
-.DS_Store
-node_modules/
+.env
 dist/
-/tmp/
+build/
+.agent-browser/
+leads.csv
+*.log

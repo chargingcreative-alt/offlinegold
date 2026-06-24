@@ -1,49 +1,38 @@
 # OfflineGold
 
-OfflineGold is a bulk lead scraping tool designed to find businesses on Google Maps that don't have a website. It analyzes these businesses and scores them based on their "closing chance" — a predictive rating of how likely they are to need digital services.
-
-## Features
-
-- **Google Maps Scraper**: Targeted scraping for any niche and location.
-- **Website Detection**: Filters out businesses that already have a web presence.
-- **Lead Scoring**: Predicts closing chance based on rating, review count, and other factors.
-- **Dashboard**: Clean UI for searching and exporting leads.
+Bulk lead scraping tool that extracts businesses from Google Maps across any niche, with a unique filter for businesses without a website. Each lead is analyzed and scored on "closing chance".
 
 ## Project Structure
 
-- `backend/`: FastAPI server and Playwright scraper.
-- `frontend/`: Vite + React dashboard.
+- `backend/`: FastAPI server with scraping endpoints.
+  - `scraper.py`: Playwright-based Google Maps scraper.
+  - `scoring.py`: Algorithm to calculate lead closing chance.
+  - `database.py`: Lead persistence and retrieval.
+  - `main.py`: API endpoints.
+- `frontend/`: Vite + React dashboard for users.
 
-## Setup
+## Features
+
+- **Google Maps Scraper**: Search by niche and location.
+- **Website Filter**: Identify businesses that don't have an online presence.
+- **Closing Chance Scoring**: Predictive rating of how likely a business is to need services.
+- **CSV Export**: Export leads for outreach.
+
+## Getting Started
 
 ### Backend
 
-1. Install dependencies:
-   ```bash
-   cd backend
-   pip install -r requirements.txt
-   ```
-2. Initialize Playwright:
-   ```bash
-   playwright install chromium
-   ```
-3. Run the API:
-   ```bash
-   python main.py
-   ```
+1. Navigate to `backend/`.
+2. Install dependencies: `pip install -r requirements.txt`.
+3. Set up Playwright: `playwright install chromium`.
+4. Run the server: `python main.py`.
 
 ### Frontend
 
-1. Install dependencies:
-   ```bash
-   cd frontend
-   npm install
-   ```
-2. Run the development server:
-   ```bash
-   npm run dev
-   ```
+1. Navigate to `frontend/`.
+2. Install dependencies: `npm install`.
+3. Run the dev server: `npm run dev`.
 
-## License
+## Environment Variables
 
-MIT
+- `PLAYWRIGHT_BROWSERS_PATH`: Path to Playwright browsers (pre-configured for sandbox).

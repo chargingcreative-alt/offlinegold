@@ -91,10 +91,25 @@ async def export_leads():
     if not leads:
         raise HTTPException(status_code=404, detail="No leads found to export")
     
+    # Map to clean columns for the user
+    export_data = []
+    for l in leads:
+        export_data.append({
+            "Business Name": l.get('name'),
+            "Niche": l.get('query', 'Unknown'),
+            "Category": l.get('category'),
+            "Rating": l.get('rating'),
+            "Reviews": l.get('reviews'),
+            "Phone": l.get('phone'),
+            "Address": l.get('address'),
+            "Website": l.get('website') or "None",
+            "Closing Chance": f"{l.get('closing_chance')}%"
+        })
+    
     si = StringIO()
-    cw = csv.DictWriter(si, fieldnames=leads[0].keys())
+    cw = csv.DictWriter(si, fieldnames=export_data[0].keys())
     cw.writeheader()
-    cw.writerows(leads)
+    cw.writerows(export_data)
     
     output = si.getvalue()
     
